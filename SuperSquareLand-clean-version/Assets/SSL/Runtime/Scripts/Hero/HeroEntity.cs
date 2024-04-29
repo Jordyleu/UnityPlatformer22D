@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class HeroEntity : MonoBehaviour
 {
@@ -25,8 +24,15 @@ public class HeroEntity : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_AreOrientAndMovementOpposite())
+        {
+            _TurnBack();
+        }
+        else
+        {
         _UpdateHorizontalSpeed();
         _ChangeOrientFromHorizontalMovement();
+        }
         _ApplyHorizontalSpeed();
     }
 
@@ -36,7 +42,7 @@ public class HeroEntity : MonoBehaviour
         velocity.x = _horizontalSpeed * _orientX;
         _rigidbody.velocity = velocity;
     }
-    
+
     private void Update()
     {
         _UpdateOrientVisual();
@@ -56,7 +62,7 @@ public class HeroEntity : MonoBehaviour
     private void _Accelerate()
     {
         _horizontalSpeed += _horizontalMovementsSettings.acceleration * Time.fixedDeltaTime;
-        if ( _horizontalSpeed > _horizontalMovementsSettings.speedmax) 
+        if (_horizontalSpeed > _horizontalMovementsSettings.speedmax)
         {
             _horizontalSpeed = _horizontalMovementsSettings.speedmax;
         }
@@ -71,7 +77,7 @@ public class HeroEntity : MonoBehaviour
     }
     private void _UpdateHorizontalSpeed()
     {
-        if ( _moveDirX != 0f)
+        if (_moveDirX != 0f)
         {
             _Accelerate();
         }
@@ -79,6 +85,19 @@ public class HeroEntity : MonoBehaviour
         {
             _Decelerate();
         }
+    }
+    private void _TurnBack()
+    {
+        _horizontalSpeed -= _horizontalMovementsSettings.turnBackFrictions * Time.fixedDeltaTime;
+        if (_horizontalSpeed < 0f)
+        {
+            _horizontalSpeed= 0f;
+            _ChangeOrientFromHorizontalMovement();
+        }
+    }
+    private bool _AreOrientAndMovementOpposite()
+    {
+        return _moveDirX * _orientX < 0f;
     }
 
     private void OnGUI()
