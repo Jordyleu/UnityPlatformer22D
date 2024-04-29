@@ -33,7 +33,7 @@ public class HeroEntity : MonoBehaviour
     private void _ApplyHorizontalSpeed()
     {
         Vector2 velocity = _rigidbody.velocity;
-        velocity.x = _horizontalSpeed * _moveDirX;
+        velocity.x = _horizontalSpeed * _orientX;
         _rigidbody.velocity = velocity;
     }
     
@@ -61,6 +61,14 @@ public class HeroEntity : MonoBehaviour
             _horizontalSpeed = _horizontalMovementsSettings.speedmax;
         }
     }
+    private void _Decelerate()
+    {
+        _horizontalSpeed -= _horizontalMovementsSettings.deceleration * Time.fixedDeltaTime;
+        if (_horizontalSpeed < 0f)
+        {
+            _horizontalSpeed = 0f;
+        }
+    }
     private void _UpdateHorizontalSpeed()
     {
         if ( _moveDirX != 0f)
@@ -69,7 +77,7 @@ public class HeroEntity : MonoBehaviour
         }
         else
         {
-            _horizontalSpeed = 0f;
+            _Decelerate();
         }
     }
 
