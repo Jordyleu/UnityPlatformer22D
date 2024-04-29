@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class HeroEntity : MonoBehaviour
 {
@@ -6,7 +7,8 @@ public class HeroEntity : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody;
 
     [Header("Horizontal Movements")]
-    [SerializeField] private float _horizontalSpeed = 5f;
+    [SerializeField] private HeroHorizontalMovementsSettings _horizontalMovementsSettings;
+    private float _horizontalSpeed = 0f;
     private float _moveDirX = 0f;
 
     [Header("Orientation")]
@@ -23,6 +25,7 @@ public class HeroEntity : MonoBehaviour
 
     private void FixedUpdate()
     {
+        _UpdateHorizontalSpeed();
         _ChangeOrientFromHorizontalMovement();
         _ApplyHorizontalSpeed();
     }
@@ -49,6 +52,25 @@ public class HeroEntity : MonoBehaviour
     {
         if (_moveDirX == 0f) return;
         _orientX = Mathf.Sign(_moveDirX);
+    }
+    private void _Accelerate()
+    {
+        _horizontalSpeed += _horizontalMovementsSettings.acceleration * Time.fixedDeltaTime;
+        if ( _horizontalSpeed > _horizontalMovementsSettings.speedmax) 
+        {
+            _horizontalSpeed = _horizontalMovementsSettings.speedmax;
+        }
+    }
+    private void _UpdateHorizontalSpeed()
+    {
+        if ( _moveDirX != 0f)
+        {
+            _Accelerate();
+        }
+        else
+        {
+            _horizontalSpeed = 0f;
+        }
     }
 
     private void OnGUI()
