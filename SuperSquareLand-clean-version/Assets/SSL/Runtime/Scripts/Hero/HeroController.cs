@@ -5,6 +5,13 @@ public class HeroController : MonoBehaviour
     private void Update()
     {
         _entity.SetMoveDirX(GetInputMoveX());
+        if (_GetInputDownJump())
+        {
+            if (_entity.IsTouchingGround && !_entity.IsJumping)
+            {
+                _entity.JumpStart();
+            }
+        }
     }
     private float GetInputMoveX()
     {
@@ -34,5 +41,9 @@ public class HeroController : MonoBehaviour
         GUILayout.BeginVertical(GUI.skin.box);
         GUILayout.Label(gameObject.name);
         GUILayout.EndVertical();
+    }
+    private bool _GetInputDownJump()
+    {
+        return Input.GetKeyDown(KeyCode.Space);
     }
 }
