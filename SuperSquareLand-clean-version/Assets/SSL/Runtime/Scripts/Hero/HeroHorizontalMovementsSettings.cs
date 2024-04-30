@@ -10,4 +10,7 @@ public class HeroHorizontalMovementsSettings
     public float deceleration = 15f;
     public float turnBackFrictions = 25f;
     public float speedmax = 5f;
+
+    public float DashSpeed = 40f;
+    public float DashDuration = 0.1f;
 }
