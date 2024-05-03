@@ -14,6 +14,8 @@ public class CameraManager : MonoBehaviour
     private Vector3 _profileTransitionStartPosition;
     private float _profileTransitionStartSize;
 
+    private Vector3 _profileLastFollowDestination;
+
     public static CameraManager Instance { get; private set; }
 
     private void _SetCameraPositon(Vector3 positon)
@@ -115,8 +117,10 @@ public class CameraManager : MonoBehaviour
         {
             if (_currentCameraProfile.TargetToFollow != null)
             {
-                Vector3 destination = _currentCameraProfile.TargetToFollow.position;
-                return destination;
+                CameraFollowable targetToFollow = _currentCameraProfile.TargetToFollow;
+                _profileLastFollowDestination.x = targetToFollow.FollowPositionX;
+                _profileLastFollowDestination.y = targetToFollow.FollowPositionY;
+                return _profileLastFollowDestination;
             }
         }
         return _currentCameraProfile.Position; 

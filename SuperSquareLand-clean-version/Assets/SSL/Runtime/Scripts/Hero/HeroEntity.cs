@@ -46,15 +46,23 @@ public class HeroEntity : MonoBehaviour
     [SerializeField] private HeroHorizontalMovementsSettings _groundHorizontalMovementsSettings;
     [SerializeField] private HeroHorizontalMovementsSettings _airHorizontalMovementsSettings;
 
+    private CameraFollowable _cameraFollowable;
 
     public void SetMoveDirX(float dirX)
     {
         _moveDirX = dirX;
     }
 
+    private void Awake()
+    {
+        _cameraFollowable = GetComponent<CameraFollowable>();
+        _cameraFollowable.FollowPositionX = _rigidbody.position.x;
+        _cameraFollowable.FollowPositionY = _rigidbody.position.y;
+    }
     private void FixedUpdate()
     {
         _ApplyGroundDetection();
+        _UpdateCameraFollowPosition();
 
         HeroHorizontalMovementsSettings horizontalMovementsSettings = _GetCurrentHorizontalMovementSettings();
         if (_AreOrientAndMovementOpposite())
@@ -287,5 +295,14 @@ public class HeroEntity : MonoBehaviour
             GUILayout.Label("InAir");
         }
         GUILayout.Label($"JumpState = {_jumpState}");
+    }
+
+    private void _UpdateCameraFollowPosition()
+    {
+        _cameraFollowable.FollowPositionX = _rigidbody.position.x;
+        if (IsTouchingGround && !IsJumping)
+        {
+            _cameraFollowable.FollowPositionY = _rigidbody.position.y;
+        }
     }
 }
