@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c88265c57ca9548b4870850dc87643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entity: {fileID: 0}
   _jumpBufferDuration: 0.15
-  _coyoteTimeDuration: 0.2
+  _entity: {fileID: 0}
   _guiDebug: 0
+  _coyoteTimeDuration: 0.2

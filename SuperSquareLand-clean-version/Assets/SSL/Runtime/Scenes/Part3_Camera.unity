@@ -342,6 +342,11 @@ Transform:
   - {fileID: 652839053}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &225681855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6771865885331362632, guid: 58ffc10b51f5a6a4996c22f63f520b49, type: 3}
+  m_PrefabInstance: {fileID: 732721623840024181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &287613183
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,6 +666,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 8}
   m_EdgeRadius: 0
+--- !u!4 &694589298 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6662331843491865519, guid: 58ffc10b51f5a6a4996c22f63f520b49, type: 3}
+  m_PrefabInstance: {fileID: 732721623840024181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &716575651
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,6 +843,11 @@ Transform:
   - {fileID: 869992944}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &754190594 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 203643196923139263, guid: 58ffc10b51f5a6a4996c22f63f520b49, type: 3}
+  m_PrefabInstance: {fileID: 732721623840024181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &778082611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,6 +1122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5c681ea6f14b618056448dbad345f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1008347493 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5060177279040936632, guid: 58ffc10b51f5a6a4996c22f63f520b49, type: 3}
+  m_PrefabInstance: {fileID: 732721623840024181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1119478252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,7 +1478,7 @@ Transform:
   m_GameObject: {fileID: 1612629484}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 100, y: 105, z: -10}
+  m_LocalPosition: {x: 98.57, y: 103.83, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1471,7 +1491,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612629484}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -1741,7 +1761,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6480041685457909243, guid: 58ffc10b51f5a6a4996c22f63f520b49, type: 3}
   m_PrefabInstance: {fileID: 732721623840024181}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 225681855}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a0862a60028ffa45a6d6ea616e98a9e, type: 3}
@@ -1799,6 +1819,10 @@ PrefabInstance:
       propertyPath: _guiDebug
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6480041685457909243, guid: 58ffc10b51f5a6a4996c22f63f520b49, type: 3}
+      propertyPath: _groundDetector
+      value: 
+      objectReference: {fileID: 732721623840024184}
     - target: {fileID: 6771865885331362632, guid: 58ffc10b51f5a6a4996c22f63f520b49, type: 3}
       propertyPath: m_Name
       value: SquareHero_Entity
@@ -1806,13 +1830,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6771865885331362632, guid: 58ffc10b51f5a6a4996c22f63f520b49, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 732721623840024184}
   m_SourcePrefab: {fileID: 100100000, guid: 58ffc10b51f5a6a4996c22f63f520b49, type: 3}
 --- !u!4 &732721623840024182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 182482925853841835, guid: 58ffc10b51f5a6a4996c22f63f520b49, type: 3}
   m_PrefabInstance: {fileID: 732721623840024181}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &732721623840024184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225681855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959c8387ac0c03440a45f70d51385c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectionPoints:
+  - {fileID: 754190594}
+  - {fileID: 1008347493}
+  - {fileID: 694589298}
+  _detectionLength: 0.05
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class HeroEntity : MonoBehaviour
 
     [Header("Ground")]
     [SerializeField] private GroundDetector _groundDetector;
+    public bool IsTouchingGround { get; private set; } = false;
 
     [Header("Jump")]
     [SerializeField] private HeroJumpSettings _jumpSettings;
@@ -45,7 +46,6 @@ public class HeroEntity : MonoBehaviour
     [SerializeField] private HeroHorizontalMovementsSettings _groundHorizontalMovementsSettings;
     [SerializeField] private HeroHorizontalMovementsSettings _airHorizontalMovementsSettings;
 
-    public bool IsTouchingGround { get; private set; } = false;
 
     public void SetMoveDirX(float dirX)
     {
