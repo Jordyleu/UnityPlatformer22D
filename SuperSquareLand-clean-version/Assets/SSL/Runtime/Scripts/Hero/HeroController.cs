@@ -5,6 +5,18 @@ public class HeroController : MonoBehaviour
     [Header("Jump Buffer")]
     [SerializeField] private float _jumpBufferDuration = 0.2f;
     private float _jumpBufferTimer = 0f;
+
+    [Header("Entity")]
+    [SerializeField] private HeroEntity _entity;
+    private bool _entityWasTouchingGround = false;
+
+    [Header("Debug")]
+    [SerializeField] private bool _guiDebug = false;
+
+    [Header("Coyote Time")]
+    [SerializeField] private float _coyoteTimeDuration = 0.2f;
+    private float _coyoteTimeCountdown = -1f;
+    
     private void Start()
     {
         _CancelJumpBuffer();
@@ -15,6 +27,14 @@ public class HeroController : MonoBehaviour
 
         _entity.SetMoveDirX(GetInputMoveX());
 
+        if (_EntityHasExitGround())
+        {
+            _ResetCoyoteTime();
+        }
+        else
+        {
+            _UpdateCoyoteTime();
+        }
         if (_GetInputDownJump())
         {
             if (_entity.IsTouchingGround && !_entity.IsJumping)
@@ -57,11 +77,6 @@ public class HeroController : MonoBehaviour
         }
         return InputMoveX;
     }
-    [Header("Entity")]
-    [SerializeField] private HeroEntity _entity;
-
-    [Header("Debug")]
-    [SerializeField] private bool _guiDebug = false;
 
     private void OnGUI()
     {
@@ -96,5 +111,22 @@ public class HeroController : MonoBehaviour
     private void _CancelJumpBuffer()
     {
         _jumpBufferTimer = _jumpBufferDuration;
+    }
+    private void _UpdateCoyoteTime()
+    {
+        if (!_IsCoyoteTimeActive()) return;
+        _coyoteTimeCountdown -= Time.deltaTime;
+    }
+    private void _ResetCoyoteTime()
+    {
+        _coyoteTimeCountdown = _coyoteTimeDuration;
+    }
+    private bool _IsCoyoteTimeActive()
+    {
+        return _coyoteTimeCountdown > 0f;
+    }
+    private bool _EntityHasExitGround()
+    {
+        return _entityWasTouchingGround && !_entity.IsTouchingGround;
     }
 }
