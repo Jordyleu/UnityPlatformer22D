@@ -40,10 +40,12 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
+
+        Vector3 nextPosition = _FindCameraNextPosition();
         if (IsPlayingProfileTransition())
         {
             _profileTransitionTimer += Time.deltaTime;
-            Vector3 transitionPosition = _CalculateProfileTransitionPosition(_currentCameraProfile.Position);
+            Vector3 transitionPosition = _CalculateProfileTransitionPosition(nextPosition);
             _SetCameraPositon(transitionPosition);
             float transitionSize = _CalculateProfileTransitionCameraSize(_currentCameraProfile.CameraSize);
             _SetCameraSize(transitionSize);
@@ -51,7 +53,7 @@ public class CameraManager : MonoBehaviour
         else
         {
             _SetCameraSize(_currentCameraProfile.CameraSize);
-            _SetCameraPositon(_currentCameraProfile.Position);
+            _SetCameraPositon(nextPosition);
         }
     }
     private void _InitToDefaultProfile()
@@ -105,5 +107,18 @@ public class CameraManager : MonoBehaviour
         float percent = _profileTransitionTimer / _profileTransitionDuration;
         Vector3 origin = _profileTransitionStartPosition;
         return Vector3.Lerp(origin, destination, percent);
+    }
+
+    private Vector3 _FindCameraNextPosition()
+    {
+        if (_currentCameraProfile.ProfileType == CameraProfile.CameraProfileType.FollowTarget)
+        {
+            if (_currentCameraProfile.TargetToFollow != null)
+            {
+                Vector3 destination = _currentCameraProfile.TargetToFollow.position;
+                return destination;
+            }
+        }
+        return _currentCameraProfile.Position; 
     }
 }
